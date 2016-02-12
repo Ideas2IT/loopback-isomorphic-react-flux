@@ -12,8 +12,7 @@ var AppContainer = React.createClass({
   render: function () {
     return (
     	<div>
-	    	<a href="/profile">Profile</a>
-	      	<RouteHandler bootstrap={this.props.bootstrap} />
+	      	<RouteHandler {...this.props.bootstrap} />
       	</div>
     );
   }

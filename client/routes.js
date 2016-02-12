@@ -4,13 +4,13 @@ var DefaultRoute = ReactRouter.DefaultRoute;
 var Route = ReactRouter.Route;
 
 var AppContainer = require('./components/AppContainer.react')
-var UserApp = require('./components/UserApp.react');
+var Home = require('./components/Home');
 var Profile = require('./components/Profile.react');
 
 var routes = (
   <Route handler={AppContainer}>
   	<Route path="profile" handler={Profile} />
-    <DefaultRoute handler={UserApp}/>
+    <DefaultRoute handler={Home}/>
   </Route>
 );
 

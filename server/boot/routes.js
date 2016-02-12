@@ -1,26 +1,31 @@
-var React = require('react');
-var Router = require('react-router');
-var reactRoutes = require('../../client/routes');
+import React from 'react';
+import Router from 'react-router';
+import reactRoutes from '../../client/routes';
 
 module.exports = function routes(app) {
 
-  app.get('/', function (req, res) {
-
-    var router = Router.create({
-      location: req.url,
+  function createRoute (url){
+    return Router.create({
+      location: url,
       routes: reactRoutes
     });
+  }
 
+  var CoffeeShop = app.models.CoffeeShop;
+
+  app.get('/', function (req, res) {
+    var router = createRoute(req.url);
+    var status = { status: CoffeeShop.status()._d.v };
     router.run(function (Handler) {
-			var model = {"data":"test"};
-      var html = React.renderToString(
-        <Handler bootstrap = {{model}} />
+      const html = React.renderToString(
+        <Handler bootstrap={status} />
       );
       res.render('index', {
         markup: html,
-        bootstrap: JSON.stringify(model)
+        bootstrap: JSON.stringify(status)
       });
     });
   });
+  
 }
 
