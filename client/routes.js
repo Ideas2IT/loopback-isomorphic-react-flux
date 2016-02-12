@@ -4,12 +4,12 @@ var DefaultRoute = ReactRouter.DefaultRoute;
 var Route = ReactRouter.Route;
 
 var AppContainer = require('./components/AppContainer.react')
-var Home = require('./components/Home');
-var Profile = require('./components/Profile.react');
+var Home = require('./components/Home.react');
+var Reviewer = require('./components/Reviewer.react');
 
 var routes = (
   <Route handler={AppContainer}>
-  	<Route path="profile" handler={Profile} />
+  	<Route path="reviewers" handler={Reviewer} />
     <DefaultRoute handler={Home}/>
   </Route>
 );

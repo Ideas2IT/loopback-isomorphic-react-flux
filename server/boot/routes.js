@@ -12,6 +12,7 @@ module.exports = function routes(app) {
   }
 
   var CoffeeShop = app.models.CoffeeShop;
+  var Reviewer = app.models.Reviewer;
 
   app.get('/', function (req, res) {
     var router = createRoute(req.url);
@@ -26,6 +27,23 @@ module.exports = function routes(app) {
       });
     });
   });
-  
+
+  app.get('/reviewers', function (req, res) {
+    var router = createRoute(req.url);
+    router.run(function (Handler) {
+      Reviewer.find().then(function(model) {
+        console.log("model",model);
+        var reviewers = {reviewers: model};
+        const html = React.renderToString(
+          <Handler bootstrap = {reviewers} />
+        );
+        res.render('index', {
+          markup: html,
+          bootstrap: JSON.stringify(reviewers)
+        });
+      });
+    });
+  });
+
 }
 

@@ -22,9 +22,7 @@
       ]
     }
   },
-  "files": {
-
-  },
+  "files": {},
   "final": {
     "loopback#urlNotFound": {}
   },
