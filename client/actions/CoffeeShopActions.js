@@ -2,12 +2,12 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Constants = require('../constants/Constants');
 
 // Define action methods
-var DefaultActions = {
-  getUsers: function() {
+var CoffeeShopActions = {
+  getAllCoffeeShops: function() {
     AppDispatcher.handleAction({
-      actionType: Constants.USER_LIST
-    })
+      actionType: Constants.COFFEE_SHOP_LIST
+    })  	
   }
 };
 
-module.exports = DefaultActions;
+module.exports = CoffeeShopActions;

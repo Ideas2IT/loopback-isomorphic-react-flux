@@ -2,17 +2,13 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants = require('../constants/Constants');
 var _ = require('underscore');
-var API = require('../utils/API');
 
-// Define initial data points
-var _userList = API.getUserList();
+import { CoffeeShopApi } from '../utils/API';
 
-function getRandomUser() {
-  _userList.push(API.getRandomUser());
-}
+var _coffeeShops = "";
 
-// Extend Cart Store with EventEmitter to add eventing capabilities
-var UserStore = _.extend({}, EventEmitter.prototype, {
+// Extend Reviewer Store with EventEmitter to add eventing capabilities
+var CoffeeShopStore = _.extend({}, EventEmitter.prototype, {
 
   // Emit Change event
   emitChange: function() {
@@ -29,9 +25,9 @@ var UserStore = _.extend({}, EventEmitter.prototype, {
     this.removeListener('change', callback);
   },
 
-  getUsers: function() {
-    console.log('getUsers: function() {', _userList);
-    return _userList;
+  getCoffeeShopList: function() {
+    console.log('getUsers: function() {', _coffeeShops);
+    return _coffeeShops;
   }
 
 });
@@ -42,18 +38,19 @@ AppDispatcher.register(function(payload) {
 
   switch (action.actionType) {
 
-    case Constants.USER_LIST:
-      getRandomUser();
+    case Constants.COFFEE_SHOP_LIST:
+
+      CoffeeShopApi.find().then((response) => {
+        _coffeeShops = response.data;
+        CoffeeShopStore.emitChange();
+      });
+
       break;
 
     default:
       return true;
   }
-
-  UserStore.emitChange();
-
   return true;
-
 });
 
-module.exports = UserStore;
+module.exports = CoffeeShopStore;
