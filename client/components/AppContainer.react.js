@@ -1,6 +1,5 @@
-var React = require('react');
-
-var ReactRouter = require('react-router');
+var React = require("react");
+var ReactRouter = require("react-router");
 var RouteHandler = ReactRouter.RouteHandler;
 
 var AppContainer = React.createClass({

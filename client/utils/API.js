@@ -1,9 +1,9 @@
-import api from 'axios';
+import api from "axios";
 
 export const CoffeeShopApi = {
 
   find() {
-    return api.get('/api/coffeeshops');
+    return api.get("/api/coffeeshops");
   },
 
 };

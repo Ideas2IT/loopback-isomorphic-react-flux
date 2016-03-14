@@ -1,8 +1,10 @@
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./routes');
+var React = require("react");
+var ReactDOM = require("react-dom");
+var routes = require("./routes");
+var Router = require("react-router");
 var bootstrap = window.__BOOTSTRAP__ || {};
 
-Router.run(routes,  Router.HistoryLocation, function (Handler) {
-  React.render(<Handler bootstrap={bootstrap} />, document.getElementById('root'));
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  ReactDOM.render(<Handler bootstrap={bootstrap} />,
+    document.getElementById("root"));
 });

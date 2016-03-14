@@ -1,28 +1,28 @@
 // Update: Hey Folks - I've got a full Gulpfile with everything else over at https://github.com/wesbos/React-For-Beginners-Starter-Files
 
-var source = require('vinyl-source-stream');
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var browserify = require('browserify');
-var reactify = require('reactify');
-var babelify = require('babelify');
-var watchify = require('watchify');
-var notify = require('gulp-notify');
+var source = require("vinyl-source-stream");
+var gulp = require("gulp");
+var gutil = require("gulp-util");
+var browserify = require("browserify");
+var reactify = require("reactify");
+var babelify = require("babelify");
+var watchify = require("watchify");
+var notify = require("gulp-notify");
 
 
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
   notify.onError({
-    title: 'Compile Error',
-    message: '<%= error.message %>'
+    title: "Compile Error",
+    message: "<%= error.message %>"
   }).apply(this, args);
-  this.emit('end'); // Keep gulp from hanging on this task
+  this.emit("end"); // Keep gulp from hanging on this task
 }
 
 function buildScript(file, watch) {
   
   var props = {
-    entries: ['./client/' + file],
+    entries: ["./client/" + file],
     debug : true,
     transform:  [reactify, babelify]
   };
@@ -33,15 +33,15 @@ function buildScript(file, watch) {
   function rebundle() {
     var stream = bundler.bundle();
     return stream
-      .on('error', handleErrors)
-      .pipe(source('bundle.js'))
-      .pipe(gulp.dest('./public/assets'));
+      .on("error", handleErrors)
+      .pipe(source("bundle.js"))
+      .pipe(gulp.dest("./public/assets"));
   }
 
   // listen for an update and run rebundle
-  bundler.on('update', function() {
+  bundler.on("update", function() {
     rebundle();
-    gutil.log('Rebundle...');
+    gutil.log("Rebundle...");
   });
 
   // run it once the first time buildScript is called
@@ -50,11 +50,11 @@ function buildScript(file, watch) {
 
 
 // run once
-gulp.task('scripts', function() {
-  return buildScript('app.js', false);
+gulp.task("scripts", function() {
+  return buildScript("app.js", false);
 });
 
-// run 'scripts' task first, then watch for future changes
-gulp.task('default', ['scripts'], function() {
-  return buildScript('app.js', true);
+// run "scripts" task first, then watch for future changes
+gulp.task("default", ["scripts"], function() {
+  return buildScript("app.js", true);
 });

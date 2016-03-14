@@ -1,6 +1,6 @@
-var React = require('react');
-var CoffeeShopActions = require('../actions/CoffeeShopActions');
-var CoffeeShopStore = require('../stores/CoffeeShopStore');
+var React = require("react");
+var CoffeeShopActions = require("../actions/CoffeeShopActions");
+var CoffeeShopStore = require("../stores/CoffeeShopStore");
 
 var Home = React.createClass({
   getInitialState: function(){
@@ -26,7 +26,7 @@ var Home = React.createClass({
           this.state.CoffeeShops.map(function(CoffeeShop){
             return (
               <div>{CoffeeShop.name} {CoffeeShop.city}</div>   
-            )
+            );
           })
           : null
         }

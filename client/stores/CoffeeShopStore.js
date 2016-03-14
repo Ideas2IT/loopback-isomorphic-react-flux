@@ -1,9 +1,9 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var EventEmitter = require('events').EventEmitter;
-var Constants = require('../constants/Constants');
-var _ = require('underscore');
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var EventEmitter = require("events").EventEmitter;
+var Constants = require("../constants/Constants");
+var _ = require("underscore");
 
-import { CoffeeShopApi } from '../utils/API';
+import {CoffeeShopApi} from "../utils/API";
 
 var _coffeeShops = "";
 
@@ -12,21 +12,21 @@ var CoffeeShopStore = _.extend({}, EventEmitter.prototype, {
 
   // Emit Change event
   emitChange: function() {
-    this.emit('change');
+    this.emit("change");
   },
 
   // Add change listener
   addChangeListener: function(callback) {
-    this.on('change', callback);
+    this.on("change", callback);
   },
 
   // Remove change listener
   removeChangeListener: function(callback) {
-    this.removeListener('change', callback);
+    this.removeListener("change", callback);
   },
 
   getCoffeeShopList: function() {
-    console.log('getUsers: function() {', _coffeeShops);
+    console.log("getUsers: function() {", _coffeeShops);
     return _coffeeShops;
   }
 
